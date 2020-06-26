@@ -61,12 +61,14 @@ int main(){
   int inimigosvivos = totaldeinimigos;
   char direcao = 'l';
   char pressionartecla;
+  int cair;
+  int velocidadeinimigo;
 
   arena[tamanhoy - 1][tamanhox / 2] = nave;
 
   while(totaldeinimigos > 0 && vitoria){
-    int cair = 0;
-    int velocidadeinimigo = 1 + 10 * inimigosvivos / totaldeinimigos;
+    velocidadeinimigo = 1 + 10 * inimigosvivos / totaldeinimigos;
+    cair = 0;
     tiropronto++;
   //Exibir arena
   system("cls");
@@ -91,6 +93,100 @@ int main(){
         }
       else if(i%2 == 0 && arena[y][x] == tiroinimigo && (arena[y + 1][x] == inimigo | arena[y+1][x] == escudoinimigo)){
         arena[y][x] = ' ';
+      }
+    }
+  }
+  for(x = 0; x < tamanhox; x++){
+    for(y = 0; y < tamanhoy; y++){
+      if((i % 5) == 0 && (arena[y][x] == escudoinimigo | arena[y][x] == inimigo) && (rand() % 15) > 13 && arena[y + 1][x] != tironave){
+        for(yi = y + 1; yi < tamanhoy; yi++){
+          if(arena[yi][x] == inimigo | arena[yi][x] == escudoinimigo){
+            inimigopronto = 0;
+            break;
+          }
+          inimigopronto = 1;
+        }
+          if(inimigopronto){
+           arena[y+1][x] = tiroinimigo;
+          }
+        }
+        if(arena[y][x] == tironave && arena[y - 1][x] == inimigo){
+          arena[y][x] = ' ';
+          arena[y-1][x] = explosao;
+          inimigosvivos--;
+          score = score + 50;
+        }
+        else if(arena[y][x] == tironave && arena[y - 1][x] == escudoinimigo){
+          arena[y][x] = ' ';
+          arena[y-1][x] = inimigo;
+          inimigosvivos--;
+          score = score + 50;
+        }
+        else if(arena[y][x] == tironave && arena[y - 1][x] == tiroinimigo){
+          arena[y][x] = ' ';
+        }
+        else if(arena[y][x] == explosao){
+          arena[y][x] = ' ';
+        }
+        else if((i + 1) % 2 == 0 && arena[y][x] == tiroinimigo && arena[y + 1][x] == nave){
+          arena[y + 1][x] = explosao;
+          arena[y][x] = ' ';
+          vitoria = 0;
+        }
+        else if(arena[y][x] == tironave && arena[y - 1][x] != tiroinimigo){
+          arena[y][x] = ' ';
+          arena[y - 1][x] = tironave;
+        }
+      }
+    }
+
+  //Atualizar inimigos
+  for(y = 0; y < tamanhoy; y++){
+    if(arena[y][0] == inimigo){
+      direcao = 'r';
+      cair = 1;
+      break;
+    }
+    if(arena[y][tamanhox - 1] == inimigo){
+      direcao = 'l';
+      cair = 1;
+      break;
+    }
+  }
+
+  //Atualizar placar
+  if(i % velocidadeinimigo == 0){
+    if(direcao == 'l'){
+      for(x = 0; x < tamanhox - 1; x++){
+        for(y = 0; y < tamanhoy; y++){
+          if(cair && (arena[y-1][x + 1] == inimigo || arena[y - 1][x + 1] == escudoinimigo)){
+            arena[y][x] = arena[y - 1][x + 1];
+            arena[y - 1][x + 1] = ' ';
+          }
+          else if(!cair && (arena[y][x + 1] == inimigo || arena[y][x + 1] == escudoinimigo)){
+            arena[y][x] = arena[y][x + 1];
+            arena[y][x + 1] = ' ';
+          }
+        }
+      }
+    }
+    else{
+      for(x = tamanhox; x > 0; x--){
+        for(y = 0; y < tamanhoy; y++){
+          if(cair && (arena[y - 1][x - 1] == inimigo || arena[y - 1][x - 1] == escudoinimigo)){
+            arena[y][x] = arena[y - 1][x - 1];
+            arena[y - 1][x - 1] = ' ';
+          }
+          else if(!cair && (arena[y][x - 1] == inimigo || arena[y][x - 1] == escudoinimigo)){
+            arena[y][x] = arena[y][x - 1];
+            arena[y][x - 1] = ' ';
+          }
+        }
+      }
+    }
+    for(x = 0; x < tamanhox; x ++){
+      if (arena[tamanhoy - 1][x] == inimigo){
+        vitoria = 0;
       }
     }
   }
