@@ -6,8 +6,11 @@
 #include <conio.h>
 #include <windows.h>
 #include <time.h>
+#include <locale.h>
 
 int main(){
+
+  setlocale(LC_ALL, "portuguese");
 
   //Setar Título no console
   system("title Terminal Invaders");
@@ -20,7 +23,7 @@ int main(){
   char nave = 'A';
   char tironave = '^';
   char inimigo = 'W';
-  char escudoinimigo = 'O';
+  char escudoinimigo = 'U';
   char tiroinimigo = '*';
   char explosao = 'X';
   int score = 0;
@@ -256,14 +259,14 @@ int main(){
     Sleep(500);
     printf("\n                              GANHOU!\n\n\n");
     Sleep(1000);
-    printf("            PARABENS! VOCE CONSEGUIU SALVAR SEU TERMINAL\n");
+    printf("            PARAB%cNS! VOC%c CONSEGUIU SALVAR SEU TERMINAL\n", 201, 202);
     Sleep(1000);
     printf("\n\n            Score: %d", score);
     Sleep(1000);
 
     scorebonus = totaldeinimigos * 20 - i;
 
-    printf("\n\n            Bonus: %d", scorebonus);
+    printf("\n\n            B%cnus: %d", 212, scorebonus);
     Sleep(1000);
     printf("\n\n            Score Total: %d", score + scorebonus);
     Sleep(1000);
@@ -273,9 +276,10 @@ int main(){
     Sleep(500);
     printf("\n                                      GAME OVER\n\n\n");
     Sleep(1000);
-    printf("                        VOCE NAO CONSEGUIU SALVAR SEU TERMINAL :(\n");
+    printf("                        VOC%c N%cO CONSEGUIU SALVAR SEU TERMINAL :(\n", 202, 195);
     Sleep(1000);
-    printf("\n\n                                    Score Final: %d", score);
+    printf("\n\n                                    Score Final: %d\n\n", score);
+    Sleep(1000);
     getch();
   }
 
