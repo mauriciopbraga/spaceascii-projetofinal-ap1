@@ -8,6 +8,10 @@
 #include <time.h>
 
 int main(){
+
+  //Setar Título no console
+  system("title Terminal Invaders");
+
   //Variáveis
   int tamanhoy = 23;
   int tamanhox = 40;
