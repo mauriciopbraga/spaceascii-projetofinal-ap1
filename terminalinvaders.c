@@ -1,5 +1,19 @@
-//Projeto final - Algoritmos e Programação I
-//Jogo Terminal Invaders (baseado em Space Invaders) - O jogo consiste em destruir todas as naves inimigas
+/*
+Projeto final - Algoritmos e Programação I
+Jogo Terminal Invaders (baseado em Space Invaders)
+Versão Windows apenas
+
+O objetivo do jogo basicamente é destruir todas as naves inimigas, no caso, os "U" e "W". Onde os "U" representam as naves de linhas de frente.
+Logo são mais fortes. E as representadas pelo "W" que são destruidas com apenas um tiro. O jogo pode ser vencido quando todas as naves inimigas forem destruídas.
+  Dentro do jogo existem fatores que o fazem ficar mais dinâmico. Alguns fatores são:
+
+- Conforme o tempo passa e você não destroi as naves elas vão caindo;
+- O grupo de naves se movimenta de um lado para o outro;
+- As naves inimigas atiram projeteis que destroem sua nave;
+- Caso as naves inimigas cheguem muito perto de sua nave você perderá o jogo.
+
+Tentei usar o máximo de recursos que aprendi apenas nas aulas. Usei apenas algumas bibliotecas a mais e alguns comandos básicos.
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -282,6 +296,5 @@ int main(){
     Sleep(1000);
     getch();
   }
-
   return 0;
 }
