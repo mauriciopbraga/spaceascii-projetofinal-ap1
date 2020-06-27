@@ -47,7 +47,7 @@ int main(){
   int inimigopronto = 0;
   int i = 1;
   int inimigosvivos;
-  char direcao = 'l';
+  char direcao = 'e';
   char pressionartecla;
   int velocidadeinimigo;
   int cair;
@@ -107,11 +107,11 @@ int main(){
   printf("    SCORE: %d", score);
   printf("\n");
     for(y = 0; y < tamanhoy; y++){
-      printf("|");
+      printf("[");
       for(x = 0; x < tamanhox; x++){
         printf("%c", arena[y][x]);
       }
-      printf("|");
+      printf("]");
       printf("\n");
     }
 
@@ -174,12 +174,12 @@ int main(){
     //Atualizar inimigos
     for(y = 0; y < tamanhoy; y++){
       if(arena[y][0] == inimigo){
-        direcao = 'r';
+        direcao = 'd';
         cair = 1;
         break;
       }
       if(arena[y][tamanhox - 1] == inimigo){
-        direcao = 'l';
+        direcao = 'e';
         cair = 1;
         break;
       }
@@ -187,7 +187,7 @@ int main(){
 
     //Atualizar placar
     if(i % velocidadeinimigo == 0){
-      if(direcao == 'l'){
+      if(direcao == 'e'){
         for(x = 0; x < tamanhox - 1; x++){
           for(y = 0; y < tamanhoy; y++){
             if(cair && (arena[y-1][x + 1] == inimigo || arena[y - 1][x + 1] == escudoinimigo)){
@@ -260,11 +260,11 @@ int main(){
       printf("     SCORE: %d", score);
       printf("\n");
           for (y = 0; y < tamanhoy; y ++) {
-          printf("|");
+          printf("[");
               for (x = 0; x < tamanhox; x ++) {
                   printf("%c", arena[y][x]);
               }
-          printf("|");
+          printf("]");
           printf("\n");
           }
   Sleep(1000);
